@@ -1,0 +1,13 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+      settings:
+        web-admin-password: '000'
+        web-allow-others: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    password: '000'
+  jpa:
+    generate-ddl: true
