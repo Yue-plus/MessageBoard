@@ -21,7 +21,7 @@ function updateBoardMessage() {
   const messages = getMessages();
   let temp = "";
 
-  for (let i in messages) {
+  for (let i in messages.reverse()) {
     temp += `${messages[i].id} 楼的 ${messages[i].nickName} 说：${messages[i].message}<br />`;
   }
 

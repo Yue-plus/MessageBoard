@@ -14,7 +14,7 @@ function updateMessageBoard() {
       .then(data => {
         let temp = "";
 
-        for (let i in data) {
+        for (let i in data.reverse()) {
           temp += `${data[i].id} 楼的 ${data[i].nickName} 说：${data[i].message}<br />`;
         }
 
