@@ -2,9 +2,11 @@ package zone.yue.message_board
 
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.web.bind.annotation.*
+import java.net.http.HttpRequest
 
 
 @RestController
+@CrossOrigin // 允许跨域请求
 class ApiController(val repository: BoardRepository) {
     /**
      * 获取所有留言
@@ -32,15 +34,13 @@ class ApiController(val repository: BoardRepository) {
 
     /**
      * 发布一条留言
-     * @param NickName 昵称
-     * @param Message 留言
+     * @param message form-data
      */
     @PutMapping("/putMessage")
-    fun putMessage(
-        @RequestParam(defaultValue = "游客") NickName: String,
-        @RequestParam(defaultValue = "到此一游~") Message: String
-    ): String {
-        repository.save(MessageEntity(NickName, Message))
+    fun putMessage(message: MessageEntity): String {
+        if (message.NickName == "") return "昵称不能为空"
+        if (message.Message == "") return "留言不能为空"
+        repository.save(message)
         return "发布成功"
     }
 
